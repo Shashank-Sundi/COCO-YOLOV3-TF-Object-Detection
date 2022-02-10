@@ -1,5 +1,4 @@
 absl-py
-absl_py==1.0.0
 Flask==2.0.2
 Flask_Cors==3.0.10
 numpy==1.18.5
