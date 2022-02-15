@@ -29,14 +29,14 @@ jobs:
             azure_registry_password: ${{secrets.AZURE_CONTAINER_REGISTRY_PASSWORD}}
             azure_registry_login_server: ${{secrets.AZURE_COMTAINER_REGISTRY_LOGIN_SERVER}}
         run: |
-            docker login -u $dockerhub_username -p $dockerhub_password
+            winpty docker login -u $dockerhub_username -p $dockerhub_password
       - name: build docker image
         run: |
-            docker build ./ -t computervisionsundi.azurecr.io/github_coco_yolov3:latest
+            winpty docker build ./ -t computervisionsundi.azurecr.io/github_coco_yolov3:latest
       - name: azure container registry login
         run: |
-              docker login $azure_registry_login_server -u $azure_registry_username -p $azure_registry_password
+              winpty docker login $azure_registry_login_server -u $azure_registry_username -p $azure_registry_password
       - name: docker push to registry
         run: |
-              docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
+              winpty docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
         
