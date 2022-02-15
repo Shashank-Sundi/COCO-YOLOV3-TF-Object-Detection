@@ -12,6 +12,8 @@
 * Azure with Container Registry: https://yolov3-coco-detection.azurewebsites.net
 * Azure with Dockerhub: https://coco-yolov3-dockerhub.azurewebsites.net
 
+* Pull Docker Image from Docker hub : ``docker pull shashanksundi/sundi_coco_obj_det:latest`` or manually search for the repository ``shashanksundi/sundi_coco_obj_det`` and pull the newest tag.
+
 
 <hr>
 
