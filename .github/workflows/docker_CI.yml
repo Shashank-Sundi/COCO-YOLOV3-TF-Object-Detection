@@ -34,8 +34,7 @@ jobs:
       - name: build docker image
         run: |
             docker build ./ -t computervisionsundi.azurecr.io/github_coco_yolov3:latest
-            
-      - name: azure container registry login
+
       - uses: azure/docker-login@v1
         with:
           login-server: '$azure_registry_login_server' 
