@@ -41,7 +41,13 @@ jobs:
           username: '$azure_registry_username'
           password: '$azure_registry_password'
           
-      - name: docker push to registry
-        run: |
-            docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
+      - name: Push Image to ACR
+        uses: julioarruda/pushimagetoregistry@v1
+        with:
+          acr-tokenname: $azure_registry_username
+          acr-token: $azure_registry_password
+          acr-account: computervisionsundi.azurecr.io
+          acr-imagename: computervisionsundi.azurecr.io/github_coco_yolov3:latest
+          
+
         
