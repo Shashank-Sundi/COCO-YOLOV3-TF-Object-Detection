@@ -8,7 +8,6 @@
 /Untitled.ipynb
 /output.jpg
 /data/voc2012_raw/
-*.md
 .cache
 .env
 .idea
