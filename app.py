@@ -4,10 +4,11 @@ from Log_Writer.logger import App_Logger
 from Base64.Decoder import decodeImage
 from Base64.Encoder import encodeImage
 from Preprocess.preprocessor import process , transform_images
-from yolov3_tf2.models import YoloV3
+from yolov3_tf2.models import YoloV3Tiny
 from yolov3_tf2.utils import draw_outputs
 import numpy as np
 import cv2
+import os
 
 
 app = Flask(__name__)
@@ -42,8 +43,8 @@ def index():
             image = original_image[np.newaxis, :]
 
             # load in weights in Model and classes
-            yolo = YoloV3(classes=80)
-            yolo.load_weights('./weights/yolov3.tf').expect_partial()
+            yolo = YoloV3Tiny(classes=80)
+            yolo.load_weights('./weights/yolov3-tiny.tf').expect_partial()
             class_names = [c.strip() for c in open('./data/labels/coco.names').readlines()]
             image = transform_images(image, 416)
             boxes, scores, classes, nums = yolo(image)
@@ -74,4 +75,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="127.0.0.1", port=8001)
+    app.run(debug=os.environ.get('DEBUG')=="1" ,host="0.0.0.0",port=5000)
