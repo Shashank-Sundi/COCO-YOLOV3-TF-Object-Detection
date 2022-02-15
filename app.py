@@ -3,7 +3,7 @@ from flask_cors import CORS, cross_origin
 from Log_Writer.logger import App_Logger
 from Base64.Decoder import decodeImage
 from Base64.Encoder import encodeImage
-from Preprocess.preprocessor import process , transform_images
+from Preprocess.preprocessor import process,transform_images
 from yolov3_tf2.models import YoloV3Tiny
 from yolov3_tf2.utils import draw_outputs
 import numpy as np
