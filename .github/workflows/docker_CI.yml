@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -31,16 +31,13 @@ jobs:
         run: |
             docker login -u $dockerhub_username -p $dockerhub_password     
 
-      - uses: azure/docker-login@v1
-        with:
-          login-server: '$azure_registry_login_server' 
-          username: '$azure_registry_username'
-          password: '$azure_registry_password'
-          
-      - name: Build and Push Docker Image
+      - name: Build Docker Image
         run: |
-            docker build -t computervisionsundi.azurecr.io/github_coco_yolov3:latest .
-            docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
+            docker build -t shashanksundi/sundi_coco_obj_det:latest .
+            
+      - name: Push Image to Docker-Hub
+        run: |
+            docker push shashanksundi/sundi_coco_obj_det:latest
             
 
 
