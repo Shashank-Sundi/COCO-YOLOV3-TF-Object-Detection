@@ -38,7 +38,7 @@ jobs:
           password: '$azure_registry_password'
           
       - name: Build and Push Docker Image
-      - run: |
+        run: |
             docker build -t computervisionsundi.azurecr.io/github_coco_yolov3:latest .
             docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
             
