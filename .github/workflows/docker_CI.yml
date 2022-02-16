@@ -29,12 +29,7 @@ jobs:
             azure_registry_password: ${{secrets.AZURE_CONTAINER_REGISTRY_PASSWORD}}
             azure_registry_login_server: ${{secrets.AZURE_COMTAINER_REGISTRY_LOGIN_SERVER}}
         run: |
-            docker login -u $dockerhub_username -p $dockerhub_password
-            
-      - name: build docker image
-        run: |
-            docker build ./ -t computervisionsundi.azurecr.io/github_coco_yolov3:latest
-            
+            docker login -u $dockerhub_username -p $dockerhub_password     
 
       - uses: azure/docker-login@v1
         with:
@@ -42,10 +37,14 @@ jobs:
           username: '$azure_registry_username'
           password: '$azure_registry_password'
           
-      - name: push docker image
-        run: |
-            docker login -e $dockerhub_username -u $dockerhub_username -p $dockerhub_password $azure_registry_login_server
+      - name: Build and Push Docker Image
+      - run: |
+            docker build -t computervisionsundi.azurecr.io/github_coco_yolov3:latest .
             docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
+            
+
+
+
         
             
 
