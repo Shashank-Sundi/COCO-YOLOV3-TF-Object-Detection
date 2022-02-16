@@ -31,30 +31,32 @@ jobs:
         run: |
             docker login -u $dockerhub_username -p $dockerhub_password
             
-      
+      - name: build docker image
+        run: |
+            docker build ./ -t computervisionsundi.azurecr.io/github_coco_yolov3:latest
+            
 
       - uses: azure/docker-login@v1
+        env : 
+            dockerhub_username: ${{secrets.DOCKER_HUB_USERNAME}}
+            dockerhub_password: ${{secrets.DOCKER_HUB_PASSWORD}}
+            azure_registry_username: ${{secrets.AZURE_CONTAINER_REGISTRY_USERNAME}}
+            azure_registry_password: ${{secrets.AZURE_CONTAINER_REGISTRY_PASSWORD}}
+            azure_registry_login_server: ${{secrets.AZURE_COMTAINER_REGISTRY_LOGIN_SERVER}}
         with:
           login-server: '$azure_registry_login_server' 
           username: '$azure_registry_username'
           password: '$azure_registry_password'
           
-      - name: build docker image
+      - name: push docker image
         run: |
-            docker build ./ -t computervisionsundi.azurecr.io/github_coco_yolov3:latest
             docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
           
-#       # Push Image to ACR
-#       - uses: julioarruda/pushimagetoregistry@v1
-        
-#         with:
-#           acr-tokenname: ${{secrets.AZURE_CONTAINER_REGISTRY_USERNAME}}
-#           acr-token: ${{secrets.AZURE_CONTAINER_REGISTRY_PASSWORD}}
-#           acr-account: computervisionsundi.azurecr.io
-#           acr-imagename: computervisionsundi.azurecr.io/github_coco_yolov3:latest
-#       - name: Push to ACR
-#         run: |
-#             docker push computervisionsundi.azurecr.io/github_coco_yolov3:latest
+          
+          
+      
+          
+
 
           
 
