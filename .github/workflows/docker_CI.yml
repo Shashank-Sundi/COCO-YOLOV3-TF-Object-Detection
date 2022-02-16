@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: https://yolov3-coco-detection.azurewebsites.net
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
